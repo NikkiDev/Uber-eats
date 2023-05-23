@@ -15,6 +15,7 @@ import RestaurantDetails from "../src/components/screens/RestaurantDetails";
 import { Host } from "react-native-portalize";
 import Deals from "../src/components/screens/Deals";
 import BackIcon from "../assets/icons/Deals";
+import OrderDetails from "../src/components/screens/OrderDetails";
 
 const Stack = createNativeStackNavigator();
 
@@ -65,7 +66,7 @@ const AuthNavigator = ({ navigation }) => {
             component={SettingDetails}
             options={{
               title: "Setting Details",
-              headerBackVisible: false,
+              headerBackVisible: true,
             }}
           />
           <Stack.Screen
@@ -74,6 +75,15 @@ const AuthNavigator = ({ navigation }) => {
             options={{
               title: "Restaurant",
               headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name={ROUTES.ORDER_DETAILS}
+            component={OrderDetails}
+            options={{
+              title: "Order Details",
+              headerShown: true,
+              headerBackVisible: true,
             }}
           />
           <Stack.Screen

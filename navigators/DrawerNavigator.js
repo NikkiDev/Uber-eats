@@ -1,6 +1,6 @@
 import Home from "../src/components/screens/Home";
 import Settings from "../src/components/screens/Settings";
-import Shop from "../src/components/screens/Shop";
+import ShopScreen from "../src/components/screens/ShopScreen";
 import BottomTabNavigator from "./BottomTabNavigator";
 import * as ROUTES from "../src/constants/routes";
 import * as COLORS from "../src/constants/colors";
@@ -40,7 +40,7 @@ function DrawerNavigator() {
       />
       <Drawer.Screen
         name={ROUTES.SHOP_SCREEN}
-        component={Shop}
+        component={ShopScreen}
         options={{ title: "Shop" }}
       />
       <Drawer.Screen

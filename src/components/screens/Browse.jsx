@@ -9,6 +9,9 @@ import TextInput from "../atoms/TextInput";
 import * as ROUTES from "../../constants/routes";
 
 const Container = styled(Screen)``;
+const Wrapper = styled.View`
+  padding: 0 22px;
+`;
 
 const Search = styled(TextInput)``;
 
@@ -141,40 +144,42 @@ function Browse({ navigation }) {
   return (
     <Container>
       <ScrollView
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{
-          paddingHorizontal: 22,
           paddingBottom: 70,
           paddingTop: 20,
         }}
       >
-        <Search />
+        <Wrapper>
+          <Search />
 
-        <Title style={{ marginTop: 15 }}>Top Categories</Title>
-        <InnerContainer>
-          {offerList.map((item) => {
-            return (
-              <BrowseCard
-                key={item.id}
-                title={item.title}
-                imgUrl={item.imgUrl}
-                onPress={item.handlePress}
-              />
-            );
-          })}
-        </InnerContainer>
-        <Title>All Categories</Title>
-        <InnerContainer>
-          {browseList.map((item) => {
-            return (
-              <BrowseCard
-                key={item.id}
-                title={item.title}
-                imgUrl={item.imgUrl}
-                onPress={() => console.log(item.title)}
-              />
-            );
-          })}
-        </InnerContainer>
+          <Title style={{ marginTop: 15 }}>Top Categories</Title>
+          <InnerContainer>
+            {offerList.map((item) => {
+              return (
+                <BrowseCard
+                  key={item.id}
+                  title={item.title}
+                  imgUrl={item.imgUrl}
+                  onPress={item.handlePress}
+                />
+              );
+            })}
+          </InnerContainer>
+          <Title>All Categories</Title>
+          <InnerContainer>
+            {browseList.map((item) => {
+              return (
+                <BrowseCard
+                  key={item.id}
+                  title={item.title}
+                  imgUrl={item.imgUrl}
+                  onPress={() => console.log(item.title)}
+                />
+              );
+            })}
+          </InnerContainer>
+        </Wrapper>
       </ScrollView>
     </Container>
   );

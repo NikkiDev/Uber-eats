@@ -53,7 +53,7 @@ const Label = styled.Text`
 const Deals = ({ navigation, route }) => {
   const { num } = route.params;
 
-  const [type, setTypes] = useState(num === 1 ? 0 : 1);
+  const [type, setTypes] = useState(num && num === 1 ? 0 : 1);
 
   const HeaderComponent = ({ onPress, borderBot }) => {
     return (

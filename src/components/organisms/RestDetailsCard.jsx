@@ -1,7 +1,7 @@
 import { View, Text, Image } from "react-native";
 import styled from "styled-components";
 
-const Container = styled.View`
+const Container = styled.Pressable`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -50,9 +50,10 @@ const RestDetailsCard = ({
   subtitle = "Subtitle",
   desc = "Desc",
   imgUrl,
+  onPress,
 }) => {
   return (
-    <Container>
+    <Container onPress={onPress}>
       <RightContainer imgUrl={imgUrl}>
         {title && <Title>{title}</Title>}
         {subtitle && <SubTitle>{subtitle}</SubTitle>}

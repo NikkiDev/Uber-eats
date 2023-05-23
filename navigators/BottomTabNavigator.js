@@ -1,8 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
 import Home from "../src/components/screens/Home";
 import Browse from "../src/components/screens/Browse";
 import Settings from "../src/components/screens/Settings";
-import Shop from "../src/components/screens/Shop";
+import ShopScreen from "../src/components/screens/ShopScreen";
 
 import Icon from "react-native-vector-icons/Ionicons";
 
@@ -46,7 +47,7 @@ function BottomTabNavigator() {
       />
       <Tab.Screen
         name={ROUTES.SHOP_SCREEN}
-        component={Shop}
+        component={ShopScreen}
         options={{ title: "Shop" }}
       />
       <Tab.Screen

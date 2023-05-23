@@ -2,19 +2,19 @@ import { StyleSheet, Text, View, TextInput } from "react-native";
 import React from "react";
 import { Octicons } from "@expo/vector-icons";
 
-const Input = () => {
+const Input = (placeholder, onChangeText, value, ...other) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} {...other}>
       <View style={styles.iconContainer}>
         <Octicons name="search" size={24} color="black" />
       </View>
 
       <TextInput
-        placeholder="Food, shopping, drinks, etc"
+        // placeholder={placeholder}rr
         placeholderTextColor="#000000"
         style={styles.input}
-        // onChangeText={onChangeText}
-        // value={text}
+        onChangeText={(text) => onChangeText(text)}
+        value={value}
       />
     </View>
   );

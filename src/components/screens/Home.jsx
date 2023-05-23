@@ -306,7 +306,7 @@ const Container = styled(Screen)`
   flex-grow: 1;
   align-items: center;
   justify-content: center;
-  padding: 200px 20px 0 20px;
+  padding: 30px 20px 0 20px;
   background-color: "#FFFFFF";
 `;
 
@@ -350,7 +350,6 @@ const Location = styled.Text`
   font-weight: 500;
   font-size: 18px;
   line-height: 23px;
-
   color: #000000;
 `;
 
@@ -500,14 +499,17 @@ function Home({ navigation }) {
             numColumns={3}
             keyExtractor={(item) => item.id}
           /> */}
-          <Title>Header</Title>
+
           <View
             style={{
               display: "flex",
+              flex: 1,
               flexDirection: "row",
               flexWrap: "wrap",
-              justifyContent: "center",
-              alignItems: "center",
+              justifyContent: "space-between",
+              height: 700,
+              paddingTop: 30,
+              paddingHorizontal: 15,
             }}
           >
             {ctgrListItems.map((item) => (
@@ -516,6 +518,7 @@ function Home({ navigation }) {
                 imgUrl={item.imgUrl}
                 onPress={() => console.log(item.title)}
                 key={item.id}
+                withMarginBottom
               />
             ))}
           </View>

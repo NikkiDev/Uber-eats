@@ -31,7 +31,7 @@ const Rating = styled.View`
   width: 28px;
   height: 28px;
   background-color: #eeeeee;
-  border-radius: 50%;
+  border-radius: 14px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,7 +1,7 @@
 import { View, Text, Image } from "react-native";
 import styled from "styled-components";
 import Button from "../atoms/Button";
-
+import * as ROUTES from "../../constants/routes";
 import Screen from "../atoms/Screen";
 import RestDetailsCard from "../organisms/RestDetailsCard";
 
@@ -45,7 +45,7 @@ const SectionContainer = styled.View``;
 
 const data = {
   restaurant: {
-    name: "Random name",
+    name: "Lanespan Pizza & Pub",
     category: "Pizza",
     rating: "4.6",
     ratingQuantity: 300,
@@ -59,14 +59,14 @@ const data = {
       imgUrl: require("../../../assets/images/pizzaOne.png"),
     },
     {
-      title: "McMushroom Pizza",
-      price: "21.00",
+      title: "Magic Mushroom",
+      price: "19.00",
       desc: "Some random description for restaurant",
       imgUrl: require("../../../assets/images/pizzaOne.png"),
     },
     {
-      title: "McMushroom Pizza",
-      price: "21.00",
+      title: "Super Pizza",
+      price: "33.00",
       desc: "Some random description for restaurant",
       imgUrl: require("../../../assets/images/pizzaOne.png"),
     },
@@ -112,7 +112,6 @@ const ratingImage = require("../../../assets/images/ratingFilled.png");
 
 const RestaurantDetails = ({ route, navigation }) => {
   const rest = data.restaurant;
-  console.log(route.params);
 
   const calcRating = (num) => {
     if (num > 200) {
@@ -140,22 +139,30 @@ const RestaurantDetails = ({ route, navigation }) => {
 
       <SectionContainer>
         <SectionTitle>Most Popular</SectionTitle>
-        {data.mostPopular.map((item) => {
+        {data.mostPopular.map((item, idx) => {
           return (
             <RestDetailsCard
+              key={idx}
               title={item.title}
               subtitle={item.price}
               desc={item.desc}
               imgUrl={item.imgUrl}
+              onPress={() =>
+                navigation.navigate(ROUTES.ORDER_DETAILS, {
+                  ...item,
+                  restaurantName: rest.name,
+                })
+              }
             />
           );
         })}
       </SectionContainer>
       <SectionContainer>
         <SectionTitle>Picked for You</SectionTitle>
-        {data.pickedForYou.map((item) => {
+        {data.pickedForYou.map((item, idx) => {
           return (
             <RestDetailsCard
+              key={idx}
               title={item.title}
               subtitle={item.price}
               desc={item.desc}
@@ -165,9 +172,10 @@ const RestaurantDetails = ({ route, navigation }) => {
       </SectionContainer>
       <SectionContainer>
         <SectionTitle>Our Special Pizza</SectionTitle>
-        {data.ourSpecialPizza.map((item) => {
+        {data.ourSpecialPizza.map((item, idx) => {
           return (
             <RestDetailsCard
+              key={idx}
               title={item.title}
               subtitle={item.price}
               desc={item.desc}

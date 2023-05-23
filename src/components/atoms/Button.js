@@ -4,7 +4,7 @@ import styled from "styled-components/native";
 const Container = styled.Pressable`
   width: 258px;
   height: 45px;
-  background-color: ${({ light }) => (light ? "#C7DAC5" : "#54924f")};
+  background-color: ${({ light }) => (light ? "#C7DAC5" : "#06C167")};
   border-radius: 10px;
   display: flex;
   justify-content: center;
