@@ -16,6 +16,10 @@ import { Host } from "react-native-portalize";
 import Deals from "../src/components/screens/Deals";
 import BackIcon from "../assets/icons/Deals";
 import OrderDetails from "../src/components/screens/OrderDetails";
+import DeliveryDetails from "../src/components/screens/DeliveryDetails";
+import TrackOrderMap from "../src/components/screens/TrackOrderMap";
+import Grocery from "../src/components/screens/Grocery";
+import RegisterScreen from "../src/components/screens/RegisterScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -83,6 +87,39 @@ const AuthNavigator = ({ navigation }) => {
             options={{
               title: "Order Details",
               headerShown: true,
+              headerBackVisible: true,
+            }}
+          />
+          <Stack.Screen
+            name={ROUTES.DELIVERY_DETAILS}
+            component={DeliveryDetails}
+            options={{
+              title: "Delivery Details",
+              headerShown: true,
+              headerBackVisible: true,
+            }}
+          />
+          <Stack.Screen
+            name={ROUTES.TRACK_ORDER_MAP}
+            component={TrackOrderMap}
+            options={{
+              headerShown: false,
+              headerBackVisible: true,
+            }}
+          />
+          <Stack.Screen
+            name={ROUTES.REGISTER_SCREEN}
+            component={RegisterScreen}
+            options={{
+              headerShown: false,
+              headerBackVisible: true,
+            }}
+          />
+          <Stack.Screen
+            name={ROUTES.GROCERY_SCREEN}
+            component={Grocery}
+            options={{
+              headerShown: false,
               headerBackVisible: true,
             }}
           />

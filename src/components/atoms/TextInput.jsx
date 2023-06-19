@@ -1,21 +1,43 @@
-import { StyleSheet, Text, View, TextInput } from "react-native";
-import React from "react";
-import { Octicons } from "@expo/vector-icons";
+import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
+import React, { useState } from "react";
+import { Octicons, FontAwesome, Fontome5 } from "@expo/vector-icons";
 
-const Input = (placeholder, onChangeText, value, ...other) => {
+const Input = ({
+  placeholder,
+  onChangeText,
+  value,
+  icon,
+  secured,
+  ...other
+}) => {
+  const [shown, setShown] = useState(false);
+
   return (
     <View style={styles.container} {...other}>
-      <View style={styles.iconContainer}>
-        <Octicons name="search" size={24} color="black" />
-      </View>
+      {icon && (
+        <View style={styles.iconContainer}>
+          <Octicons name="search" size={24} color="black" />
+        </View>
+      )}
 
       <TextInput
-        // placeholder={placeholder}rr
+        placeholder={placeholder}
         placeholderTextColor="#000000"
         style={styles.input}
         onChangeText={(text) => onChangeText(text)}
         value={value}
+        secureTextEntry={shown}
+        {...other}
       />
+      {secured && (
+        <Pressable style={styles.eyeContainer} onPress={() => setShown(!shown)}>
+          {shown ? (
+            <FontAwesome name="eye" size={24} color="black" />
+          ) : (
+            <FontAwesome name="eye-slash" size={24} color="black" />
+          )}
+        </Pressable>
+      )}
     </View>
   );
 };
@@ -44,7 +66,16 @@ const styles = StyleSheet.create({
   },
   input: {
     width: "100%",
-    height: "100%",
+    // height: "100%",
     marginLeft: 8,
+  },
+  eyeContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
+    marginLeft: 5,
+    position: "absolute",
+    right: 10,
   },
 });

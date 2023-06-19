@@ -1,14 +1,16 @@
 import { View, Text, Image } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Screen from "../atoms/Screen";
 import Button from "../atoms/Button";
 import CtgrBtn from "../atoms/CtgrBtn";
 import ShopCard from "../organisms/ShopCard";
+import * as ROUTES from "../../constants/routes";
+import { Shop } from "../../UserProvider";
+import AppSnackBar from "../molecules/SnackBar";
+import { RolePropType } from "deprecated-react-native-prop-types/DeprecatedViewAccessibility";
 
 const imageUrl = require("../../../assets/icons/orders.png");
-
-const testUrl = require("../../../assets/images/shopCardTestImage.png");
 
 const Container = styled(Screen)``;
 
@@ -61,49 +63,33 @@ const OrderstBtn = styled(CtgrBtn)`
   top: 43px;
 `;
 
-const fakeData = [
-  {
-    title: "Taco Bell",
-    subTitle: "1 item / US 43.00 $",
-    desc: "some random description text",
-    imageUrl: testUrl,
-  },
-  {
-    title: "Taco Bell",
-    subTitle: "1 item / US 43.00 $",
-    desc: "some random description text",
-    imageUrl: testUrl,
-  },
-  {
-    title: "Taco Bell",
-    subTitle: "1 item / US 43.00 $",
-    desc: "some random description text",
-    imageUrl: testUrl,
-  },
-  {
-    title: "Taco Bell",
-    subTitle: "1 item / US 43.00 $",
-    desc: "some random description text",
-    imageUrl: testUrl,
-  },
-];
+const ShopScreen = ({ navigation }) => {
+  const [data, setData] = useState([]);
+  let shopItems = Shop();
 
-const ShopScreen = () => {
-  const [data, setData] = useState(fakeData);
+  const testUrl = require("../../../assets/images/shopCardTestImage.png");
+
+  setTimeout(() => {
+    setData(shopItems);
+  }, 1500);
 
   return (
     <Container>
       <MainTitle>Carts</MainTitle>
       <OrderstBtn title="Orders" iconLeft={imageUrl} light />
-      {!data ? (
+      {data.length === 0 ? (
         <InnerContainer>
           <Image source={require("../../../assets/images/shopCart.png")} />
           <Title>Add items to start basket</Title>
+          <Subtitle>items in cart {data.length}</Subtitle>
           <Subtitle>
             Once you add items from a restuarant or store, your basket will
             appear here.
           </Subtitle>
-          <StartBtn title="Start Shopping" />
+          <StartBtn
+            title="Start Shopping"
+            onPress={() => navigation.navigate(ROUTES.HOME_SCREEN)}
+          />
         </InnerContainer>
       ) : (
         <InnerContainer>
@@ -111,34 +97,16 @@ const ShopScreen = () => {
             return (
               <ShopCard
                 key={index}
-                title="Taco Bell"
-                subTitle="1 item / US 43.00 $"
-                desc="some random description text"
+                title={item.title}
+                subTitle={item.subTitle}
+                desc={item.desc}
                 imageUrl={testUrl}
-                onPress={() => console.log("HELLO")}
+                onPress={() => navigation.navigate(ROUTES.ORDER_DETAILS, item)}
               />
             );
           })}
         </InnerContainer>
       )}
-      {/* <InnerContainer>
-        <Image source={require("../../../assets/images/shopCart.png")} />
-        <Title>Add items to start basket</Title>
-        <Subtitle>
-          Once you add items from a restuarant or store, your basket will appear
-          here.
-        </Subtitle>
-        <StartBtn title="Start Shopping" />
-      </InnerContainer>
-      <InnerContainer>
-        <ShopCard
-          title="Taco Bell"
-          subTitle="1 item / US 43.00 $"
-          desc="some random description text"
-          imageUrl={testUrl}
-          onPress={() => console.log("HELLO")}
-        />
-      </InnerContainer> */}
     </Container>
   );
 };

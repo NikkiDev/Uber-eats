@@ -4,7 +4,7 @@ import styled from "styled-components/native";
 const Container = styled.Pressable`
   width: 258px;
   height: 45px;
-  background-color: ${({ light }) => (light ? "#C7DAC5" : "#06C167")};
+  background-color: ${({ light }) => (!light ? "#EEEEEE" : "#000000")};
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -13,7 +13,7 @@ const Container = styled.Pressable`
 `;
 
 const Title = styled.Text`
-  color: ${({ light }) => (light ? "#55837D" : "#FFFFFF")};
+  color: ${({ light }) => (light ? "#EEEEEE" : "#000000")};
   font-size: 16px;
 `;
 

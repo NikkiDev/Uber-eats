@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Pressable, View } from "react-native";
 import styled from "styled-components/native";
 
@@ -12,6 +12,8 @@ import LoginScreenImage from "../../../assets/images/LoginScreenImage";
 import Text from "../atoms/Text";
 import Animated, { FadeIn } from "react-native-reanimated";
 import Input from "../atoms/TextInput";
+import { getData } from "../../helpers/manageStorage";
+import AppSnackBar from "../molecules/SnackBar";
 
 const Container = styled(Screen)`
   flex: 1;
@@ -96,8 +98,44 @@ const SignIn = ({ navigation }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
+  const [error, setError] = useState(false);
+
+  const userLogin = async () => {
+    const res = await getData("user");
+    console.log(res);
+    if (res && res.email === userName && res.password === password) {
+      // navigation.navigate(ROUTES.DRAWER_NAVIGATOR);
+      navigation.reset({
+        index: 0,
+        routes: [{ name: ROUTES.DRAWER_NAVIGATOR }],
+      });
+    } else {
+      setError((prev) => !prev);
+    }
+
+    // navigation.navigate(ROUTES.DRAWER_NAVIGATOR);
+  };
+
+  const getUserData = async () => {
+    const res = await getData("user");
+
+    if (res) {
+      navigation.navigate(ROUTES.DRAWER_NAVIGATOR);
+    }
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
   return (
     <Container>
+      <AppSnackBar
+        text="Wrong Credentials"
+        visible={error}
+        callback={setError}
+        isError
+      />
       <InnterContainer>
         <Desc style={{ marginTop: 100, fontSize: 46, marginBottom: -10 }}>
           Uber
@@ -113,11 +151,8 @@ const SignIn = ({ navigation }) => {
         <UserName onChangeText={setUserName} value={userName} />
         <Label style={{ marginTop: 5 }}>Password</Label>
 
-        {/* <Password onChange={(e) => setPassword(e)} value={password} /> */}
-        <SignInBtn
-          title="Sign In"
-          onPress={() => navigation.navigate(ROUTES.DRAWER_NAVIGATOR)}
-        />
+        <Password onChangeText={setPassword} value={password} secured />
+        <SignInBtn title="Sign In" onPress={userLogin} />
         <ForgotPasswordContainer style={{ marginBottom: 20 }}>
           <Desc type="Light">Forgot password?</Desc>
           <Pressable
@@ -129,7 +164,9 @@ const SignIn = ({ navigation }) => {
         {/* <AuthForm title="Salut" userName={userName} setUserName={setUserName} /> */}
         <SignUpContainer style={{ marginBottom: 20 }}>
           <Desc type="Light">Doesnt have account?</Desc>
-          <Pressable>
+          <Pressable
+            onPress={() => navigation.navigate(ROUTES.REGISTER_SCREEN)}
+          >
             <SignUpButton>Sign Up</SignUpButton>
           </Pressable>
         </SignUpContainer>

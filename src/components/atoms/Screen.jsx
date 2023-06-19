@@ -7,7 +7,10 @@ const windowHeight = Dimensions.get("screen").height;
 
 const statusBarHeight = StatusBar.currentHeight;
 
-const MainWrapper = styled.KeyboardAvoidingView``;
+const MainWrapper = styled.KeyboardAvoidingView`
+  height: 100%;
+  /* justify-content: center; */
+`;
 
 const ImageBackground = styled.ImageBackground`
   height: ${windowHeight}px;
@@ -16,8 +19,6 @@ const ImageBackground = styled.ImageBackground`
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  padding-right: 22px;
-  padding-left: 22px;
   padding-top: ${Platform.OS === "ios" ? 0 : statusBarHeight}px;
   background-color: #ffffff;
 `;

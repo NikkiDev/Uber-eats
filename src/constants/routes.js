@@ -18,3 +18,7 @@ export const SETTINGS_DETAILS = "SettingsDetails";
 export const REST_DETAILS = "RestaurantDetails";
 export const DEALS_SCREEN = "DealsScreen";
 export const ORDER_DETAILS = "OrderDetails";
+export const DELIVERY_DETAILS = "DeliveryDetails";
+export const TRACK_ORDER_MAP = "TrackOrderMap";
+export const GROCERY_SCREEN = "GroceryScreen";
+export const REGISTER_SCREEN = "RegisterScreen";

@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { Text, View, StyleSheet, ScrollView, FlatList } from "react-native";
 import styled from "styled-components/native";
 import { Portal } from "react-native-portalize";
-import BottomSheet from "../atoms/BottomSheet";
+import { AntDesign } from "@expo/vector-icons";
 
+import BottomSheet from "../atoms/BottomSheet";
 import MainCard from "../organisms/MainCard";
 import Screen from "../atoms/Screen";
 import CtgrBtn from "../atoms/CtgrBtn";
@@ -11,6 +12,7 @@ import CtgrBtn from "../atoms/CtgrBtn";
 import * as ROUTES from "../../constants/routes";
 import Button from "../atoms/Button";
 import CategoryCard from "../atoms/CategoryCard";
+import { Shop } from "../../UserProvider";
 
 const ctgrListItems = [
   {
@@ -371,6 +373,7 @@ const CtgrBtnWrapper = styled.View`
 `;
 
 function Home({ navigation }) {
+  let shopItems = Shop();
   const [ctgr, setCtgr] = useState(0);
 
   const categorySheetRef = useRef();
@@ -426,6 +429,9 @@ function Home({ navigation }) {
                 />
               );
             })}
+
+            <Location>{shopItems.length}</Location>
+            <AntDesign name="shoppingcart" size={30} color="black" />
           </SortTopContainer>
 
           <SortBottomContainer>

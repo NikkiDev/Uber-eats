@@ -78,7 +78,7 @@ const DrawerContent = ({ userImageUrl, ...props }) => {
         <DrawerItem
           label="Log out"
           style={{ width: 200 }}
-          onPress={console.log("hi")}
+          onPress={() => console.log("hi")}
         />
       </BottomContainer>
     </Container>
